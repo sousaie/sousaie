@@ -1,0 +1,11 @@
+<p>Blog List</p>
+{% if blogs %}
+    <p>Found {{blogs|length}}blog{{blogs|pluralize}}</p>
+    <ul>
+      {% for blog in blogs %}
+      <li>{{blog.title}}</li>
+      {% endfor %}
+    </ul>
+{% else %}
+    <p>No blog</p>
+{% endif %}
