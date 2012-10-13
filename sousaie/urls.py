@@ -1,9 +1,10 @@
 from django.conf.urls import patterns, include, url
 from sousaie.blog.models import *
 from sousaie.blog.views import *
+from sousaie.views import *
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
@@ -14,6 +15,16 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
-    (r'^sousaie/list_blog/$',list_blogs),                 
+    url(r'^sousaie/admin/', include(admin.site.urls)),
+    url(r'^sousaie/blog/',include(blog.urls)),
+    (r'^sousaie/$',list_blogs),
+    (r'^sousaie/about/$',about_us),
+    (r'^sousaie/login/$',login_view),
+    (r'^sousaie/logout/$',logout_view),                 
 )
+
+urlpatterns += patterns((''),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': '/Users/sousaie/python/source/sousaie/sousaie/static'}
+        ),
+    )

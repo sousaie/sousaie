@@ -1,11 +1,41 @@
-<p>Blog List</p>
+<style type="text/css">
+table{
+width:800px;
+text-align: center;
+}
+<!-- 非IE浏览器居中 -->
+#center{
+  margin-right: auto;
+  margin-left: auto;
+}
+li{
+list-style-type:none;
+}
+hr{
+align: center;
+color: #987cb9;
+size: 1px;
+width=800px;
+}
+
+</style>
+{% extends "base.html" %}
+{% block content %}
 {% if blogs %}
     <p>Found {{blogs|length}}blog{{blogs|pluralize}}</p>
-    <ul>
+    <table>
       {% for blog in blogs %}
-      <li>{{blog.title}}</li>
+      <tr>
+	<td><b>{{blog.title}}</b></td>
+      </tr>
+      <tr><td><hr/></td></tr>
+      <tr>
+	<td>{{blog.content}}</td>
+      </tr>
+      <tr><td><a href="/sousaie/blog/{{blog.id}}">阅读全部....</a></td></tr>
       {% endfor %}
-    </ul>
+   </table>
 {% else %}
     <p>No blog</p>
 {% endif %}
+{% endblock%}

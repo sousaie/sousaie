@@ -1,0 +1,30 @@
+<style type="text/css">
+table{
+width:800px;
+text-align:center;
+}
+<!-- 非IE浏览器居中 -->
+#center{
+  margin-right: auto;
+  margin-left: auto;
+}
+p{
+align:center;
+}
+</style>
+{% extends "base.html"%}
+{% block content %}
+{% if blog %}
+
+    <table>
+      <tr>
+	<td align='center'>{{blog.title}}</td>
+      </tr>
+      <tr>
+	<td>{{blog.content}}</td>
+      </tr>
+    </table>
+{% else %}
+    <p>No blog is displayed.</p>
+{% endif %}
+{% endblock %}

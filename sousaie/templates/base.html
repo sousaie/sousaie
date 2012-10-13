@@ -2,13 +2,45 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
+<style type='text/css'>
+</style>
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+<script src="/static/js/modernizr.js"></script>
+<script src="/static/js/jquery-1.8.2.js"></script>
+{% block extra_head %}{% endblock %}
 </head>
 <body>
-  <h1>My helpful timestamp site</h1>
+<table>
+  <tr>
+    <td><a href='/sousaie/'>首页</a>&gt;</td>
+     <td><a href='/sousaie/about/'>关于我们 </a></td>
+  </tr>
+</table>
+<table><tr>
+<td width="20%"> 
+<p> 
+公告栏目，待定
+</p>
+<p></p>
+{% if request.user.is_authenticated %}
+  {{request.user}}&nbsp;&nbsp;注销
+{% else %}
+  <form method="post" action="/sousaie/login/"> 
+  {% csrf_token %}
+  username:<input id="username" name="username" type="string" />
+  password:<input id="password" name="password" type="password" />
+  <input type="submit" value="提交" />
+  </form>
+{%endif%}
+</td> 
+<td width="80%"> 
   {% block content %}{% endblock %}
   {% block footer %}
   <hr>
   <p>Thanks for visiting my site.</p>
   {% endblock %}
+</td>
+</tr></table>
+  
 </body>
 </html>
